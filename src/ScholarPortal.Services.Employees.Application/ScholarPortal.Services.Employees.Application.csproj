@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Convey" Version="0.4.258" />
+      <PackageReference Include="Convey.CQRS.Commands" Version="0.4.258" />
+      <PackageReference Include="Convey.CQRS.Events" Version="0.4.258" />
+      <PackageReference Include="Convey.CQRS.Queries" Version="0.4.258" />
+      <PackageReference Include="Convey.HTTP" Version="0.4.258" />
+      <PackageReference Include="Convey.MessageBrokers" Version="0.4.258" />
+      <PackageReference Include="Convey.MessageBrokers.CQRS" Version="0.4.258" />
+      <PackageReference Include="Convey.MessageBrokers.RabbitMQ" Version="0.4.258" />
+      <PackageReference Include="Convey.Persistence.MongoDB" Version="0.4.258" />
+      <PackageReference Include="Convey.Tracing.Jaeger" Version="0.4.258" />
+      <PackageReference Include="Convey.Tracing.Jaeger.RabbitMQ" Version="0.4.258" />
+      <PackageReference Include="Convey.WebApi" Version="0.4.258" />
+      <PackageReference Include="Convey.WebApi.CQRS" Version="0.4.258" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Events\External" />
+      <Folder Include="Events\Rejected" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ScholarPortal.Services.Employees.Core\ScholarPortal.Services.Employees.Core.csproj" />
+    </ItemGroup>
+
+</Project>

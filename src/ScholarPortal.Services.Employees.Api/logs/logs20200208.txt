@@ -1,0 +1,28 @@
+2020-02-08 22:46:30.009 -05:00 [FTL] Application startup exception
+MongoDB.Driver.MongoCommandException: Command createIndexes failed: command createIndexes requires authentication.
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ProcessResponse(ConnectionId connectionId, CommandMessage responseMessage)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.CommandOperationBase`1.ExecuteProtocolAsync(IChannelSource channelSource, ICoreSessionHandle session, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.WriteCommandOperation`1.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.CreateIndexesUsingCommandOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.CreateIndexesOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.MongoIndexManager.CreateManyAsync(IClientSessionHandle session, IEnumerable`1 models, CreateManyIndexesOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoIndexManagerBase`1.CreateOneAsync(CreateIndexModel`1 model, CreateOneIndexOptions options, CancellationToken cancellationToken)
+   at Convey.MessageBrokers.Outbox.Mongo.Internals.MongoOutboxInitializer.InitializeAsync()
+   at Convey.Types.StartupInitializer.InitializeAsync()
+   at Convey.Extensions.UseConvey(IApplicationBuilder app)
+   at ScholarPortal.Services.Employees.Infrastructure.Extensions.UseInfrastructure(IApplicationBuilder app) in C:\Users\Adam\RiderProjects\ScholarPortal\ScholarPortal.Services.Employees\src\ScholarPortal.Services.Employees.Infrastructure\Extensions.cs:line 60
+   at ScholarPortal.Services.Employees.Api.Program.<>c.<CreateWebHostBuilder>b__1_1(IApplicationBuilder app) in C:\Users\Adam\RiderProjects\ScholarPortal\ScholarPortal.Services.Employees\src\ScholarPortal.Services.Employees.Api\Program.cs:line 33
+   at Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.<>c__DisplayClass0_0.<Configure>b__0(WebHostBuilderContext _, IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.<>c__DisplayClass2_1.<Configure>b__2(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.DelegateStartup.Configure(IApplicationBuilder app)
+   at App.Metrics.AspNetCore.Tracking.DefaultMetricsTrackingStartupFilter.<>c__DisplayClass0_0.<Configure>g__AddMetricsTrackingMiddleware|0(IApplicationBuilder builder)
+   at App.Metrics.AspNetCore.Health.Endpoints.DefaultHealthEndpointsStartupFilter.<>c__DisplayClass0_0.<Configure>g__AddHealthEndpoints|0(IApplicationBuilder builder)
+   at App.Metrics.AspNetCore.Endpoints.DefaultMetricsEndpointsStartupFilter.<>c__DisplayClass0_0.<Configure>g__AddMetricsEndpoints|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.WebHost.BuildApplication()
