@@ -5,19 +5,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Convey" Version="0.4.258" />
-      <PackageReference Include="Convey.CQRS.Commands" Version="0.4.258" />
-      <PackageReference Include="Convey.CQRS.Events" Version="0.4.258" />
-      <PackageReference Include="Convey.CQRS.Queries" Version="0.4.258" />
-      <PackageReference Include="Convey.HTTP" Version="0.4.258" />
-      <PackageReference Include="Convey.MessageBrokers" Version="0.4.258" />
-      <PackageReference Include="Convey.MessageBrokers.CQRS" Version="0.4.258" />
-      <PackageReference Include="Convey.MessageBrokers.RabbitMQ" Version="0.4.258" />
-      <PackageReference Include="Convey.Persistence.MongoDB" Version="0.4.258" />
-      <PackageReference Include="Convey.Tracing.Jaeger" Version="0.4.258" />
-      <PackageReference Include="Convey.Tracing.Jaeger.RabbitMQ" Version="0.4.258" />
-      <PackageReference Include="Convey.WebApi" Version="0.4.258" />
-      <PackageReference Include="Convey.WebApi.CQRS" Version="0.4.258" />
+      <PackageReference Include="Convey" Version="0.4.273" />
+      <PackageReference Include="Convey.CQRS.Commands" Version="0.4.273" />
+      <PackageReference Include="Convey.CQRS.Events" Version="0.4.273" />
+      <PackageReference Include="Convey.CQRS.Queries" Version="0.4.273" />
+      <PackageReference Include="Convey.HTTP" Version="0.4.273" />
+      <PackageReference Include="Convey.MessageBrokers" Version="0.4.273" />
+      <PackageReference Include="Convey.MessageBrokers.CQRS" Version="0.4.273" />
+      <PackageReference Include="Convey.MessageBrokers.RabbitMQ" Version="0.4.273" />
+      <PackageReference Include="Convey.Persistence.MongoDB" Version="0.4.273" />
+      <PackageReference Include="Convey.Tracing.Jaeger" Version="0.4.273" />
+      <PackageReference Include="Convey.Tracing.Jaeger.RabbitMQ" Version="0.4.273" />
+      <PackageReference Include="Convey.WebApi" Version="0.4.273" />
+      <PackageReference Include="Convey.WebApi.CQRS" Version="0.4.273" />
+      <PackageReference Include="Grpc.Core" Version="1.12.0" />
     </ItemGroup>
 
     <ItemGroup>

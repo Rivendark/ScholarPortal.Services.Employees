@@ -6,7 +6,9 @@ using Convey;
 using Convey.CQRS.Commands;
 using Convey.CQRS.Events;
 using Convey.CQRS.Queries;
+using Convey.Discovery.Consul;
 using Convey.HTTP;
+using Convey.LoadBalancing.Fabio;
 using Convey.MessageBrokers;
 using Convey.MessageBrokers.CQRS;
 using Convey.MessageBrokers.Outbox;
@@ -33,6 +35,7 @@ using ScholarPortal.Services.Employees.Infrastructure.Logging;
 using ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents;
 using ScholarPortal.Services.Employees.Infrastructure.Mongo.Repositories;
 using ScholarPortal.Services.Employees.Infrastructure.Services;
+using ScholarPortal.Services.Employees.Infrastructure.Services.Clients;
 
 namespace ScholarPortal.Services.Employees.Infrastructure
 {
@@ -44,14 +47,17 @@ namespace ScholarPortal.Services.Employees.Infrastructure
 			builder.Services.AddTransient<IMessageBroker, MessageBroker>();
 			builder.Services.AddTransient<IEmployeeRepository, EmployeeMongoRepository>();
 			builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
+			builder.Services.AddTransient<IUserServiceClient, UsersServiceClient>();
 			builder.Services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
 			builder.Services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
 			builder.Services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
-			
+
 			return builder
 				.AddQueryHandlers()
 				.AddInMemoryQueryDispatcher()
 				.AddHttpClient()
+				.AddConsul()
+				.AddFabio()
 				.AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
 				.AddMessageOutbox(o => o.AddMongo())
 				.AddMongo()

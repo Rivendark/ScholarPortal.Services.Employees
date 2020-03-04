@@ -1,16 +1,16 @@
 using System;
 using System.Threading.Tasks;
 using Convey.HTTP;
-using Convey.Types;
+using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Logging;
+using ScholarPortal.Protos.Users;
 using ScholarPortal.Services.Employees.Application.DTO;
-using ScholarPortal.Services.Identity.Infrastructure;
+using ScholarPortal.Services.Employees.Application.Services;
 
 namespace ScholarPortal.Services.Employees.Infrastructure.Services.Clients
 {
-	
-	public class UsersServiceClient
+	public class UsersServiceClient : IUserServiceClient
 	{
 		private readonly ILogger<UsersServiceClient> _logger;
 		private readonly string _url;
@@ -19,26 +19,43 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Services.Clients
 		{
 			_logger = logger;
 			_url = options.Services["identity"];
+			_logger.LogInformation($"URI: {_url}");
 		}
 
 		public async Task<UserDto> GetUserAsync(Guid id)
 		{
-			using var channel = GrpcChannel.ForAddress($"{_url}");
+			AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+			AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
+			using var channel = GrpcChannel.ForAddress(_url);
 			var client = new QueryUsersService.QueryUsersServiceClient(channel);
 			var userRequest = new UserRequest {IdentityId = id.ToString()};
-			var userReply = await client.GetUserAsync(userRequest);
+			try
+			{
+				var userModel = await client.GetUserAsync(userRequest);
+				if (!(userModel is {})) return null;
+				_logger.LogInformation($"UserModel found. ID: {userModel.IdentityId}");
+				return new UserDto(
+					Guid.Parse(userModel.IdentityId),
+					userModel.FirstName,
+					userModel.LastName,
+					userModel.SocialSecurityNumber,
+					DateTimeOffset.FromUnixTimeSeconds(userModel.Birthdate.Seconds).DateTime,
+					userModel.Email,
+					DateTimeOffset.FromUnixTimeSeconds(userModel.Created.Seconds).DateTime,
+					(int) userModel.Status,
+					Guid.Parse(userModel.EmployeeId)
+				);
 
-			return new UserDto(
-				Guid.Parse(userReply.IdentityId),
-				userReply.FirstName,
-				userReply.LastName,
-				userReply.SocialSecurityNumber,
-				DateTimeOffset.FromUnixTimeSeconds(userReply.Birthdate.Seconds).DateTime,
-				userReply.Email,
-				DateTimeOffset.FromUnixTimeSeconds(userReply.Created.Seconds).DateTime,
-				userReply.Status,
-				Guid.Parse(userReply.EmployeeId)
-			);
+			}
+			catch (RpcException e)
+			{
+				_logger.LogError($"gRPC failed: {e.Message}");
+				return null;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
 		}
 	}
 }

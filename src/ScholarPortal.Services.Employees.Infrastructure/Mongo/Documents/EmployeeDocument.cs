@@ -9,13 +9,15 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 	{
 		public Guid Id { get; set; }
 		public string Title { get; set; }
+		public DateTime CreatedAt { get; set; }
 		public EmployeeState State { get; set; }
 		public Guid UserId { get; set; }
 
-		public EmployeeDocument(Guid id, string title, EmployeeState state, Guid userId)
+		public EmployeeDocument(Guid id, string title, DateTime createdAt, EmployeeState state, Guid userId)
 		{
 			Id = id;
 			Title = title;
+			CreatedAt = createdAt;
 			State = state;
 			UserId = userId;
 		}

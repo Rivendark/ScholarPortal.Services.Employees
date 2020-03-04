@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using ScholarPortal.Services.Employees.Application.DTO;
 using ScholarPortal.Services.Employees.Core.Entities;
 
@@ -10,6 +11,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			=> new EmployeeDocument(
 				entity.Id,
 				entity.Title,
+				entity.CreatedAt,
 				entity.State,
 				entity.User.Id
 			);
@@ -18,6 +20,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			=> new EmployeeDocument(
 				dto.Id,
 				dto.Title,
+				dto.CreatedAt,
 				dto.State,
 				dto.User
 			);
@@ -26,6 +29,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			=> new Employee(
 				document.Id,
 				document.Title,
+				document.CreatedAt,
 				document.State,
 				document.UserId
 			);
@@ -37,6 +41,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			=> new Employee(
 				dto.Id,
 				dto.Title,
+				dto.CreatedAt,
 				dto.State,
 				dto.User
 			);
@@ -46,6 +51,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			{
 				Id = entity.Id,
 				Title = entity.Title,
+				CreatedAt = entity.CreatedAt,
 				State = entity.State,
 				User = entity.User.Id
 			};
@@ -55,6 +61,7 @@ namespace ScholarPortal.Services.Employees.Infrastructure.Mongo.Documents
 			{
 				Id = document.Id,
 				Title = document.Title,
+				CreatedAt = document.CreatedAt,
 				State = document.State,
 				User = document.UserId
 			};

@@ -39,6 +39,8 @@ namespace ScholarPortal.Services.Employees.Api
 						.Get<GetEmployee, EmployeeDto>("employees/{employeeId}")
 						.Post<CreateEmployee>("employees/new",
 							afterDispatch: (cmd, ctx) => ctx.Response.Created($"employees/{cmd.EmployeeId}"))
+						.Post<AddEmployeeToUser>("employees/add",
+							afterDispatch: (cmd, ctx) => ctx.Response.Created($"employees/{cmd.EmployeeId}"))
 					)
 				)
 				.UseLogging();

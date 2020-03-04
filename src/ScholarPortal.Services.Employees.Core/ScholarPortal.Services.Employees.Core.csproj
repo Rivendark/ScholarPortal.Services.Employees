@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Convey" Version="0.4.258" />
+      <PackageReference Include="Convey" Version="0.4.273" />
     </ItemGroup>
 
 </Project>

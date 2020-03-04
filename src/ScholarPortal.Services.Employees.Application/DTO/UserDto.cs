@@ -12,8 +12,8 @@ namespace ScholarPortal.Services.Employees.Application.DTO
 		public string SocialSecurityNumber { get; private set; }
 		public DateTime Birthdate { get; private set; }
 		public string Email { get; private set; }
-		public DateTime Created { get; private set; }
-		public string Status { get; private set; }
+		public DateTime CreatedAt { get; private set; }
+		public int Status { get; private set; }
 		public Guid EmployeeId { get; private set; }
 
 		public UserDto()
@@ -27,8 +27,8 @@ namespace ScholarPortal.Services.Employees.Application.DTO
 			string socialSecurityNumber,
 			DateTime birthdate,
 			string email,
-			DateTime created,
-			string status,
+			DateTime createdAt,
+			int status,
 			Guid employeeId
 		) {
 			Id = id;
@@ -37,7 +37,7 @@ namespace ScholarPortal.Services.Employees.Application.DTO
 			SocialSecurityNumber = socialSecurityNumber;
 			Birthdate = birthdate;
 			Email = email;
-			Created = created;
+			CreatedAt = createdAt;
 			Status = status;
 			EmployeeId = employeeId;
 		}
