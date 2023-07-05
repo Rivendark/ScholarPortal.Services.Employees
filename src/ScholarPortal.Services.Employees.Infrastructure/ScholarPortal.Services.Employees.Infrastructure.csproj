@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -27,7 +27,7 @@
       <PackageReference Include="Convey.WebApi.Swagger" Version="0.4.273" />
       <PackageReference Include="Google.Protobuf" Version="3.11.4" />
       <PackageReference Include="Grpc.Core" Version="2.27.0" />
-      <PackageReference Include="Grpc.Net.Client" Version="2.27.0" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.52.0" />
       <PackageReference Include="Grpc.Tools" Version="2.27.0" />
       <PackageReference Include="ScholarPortal.Protos" Version="1.0.0" />
     </ItemGroup>
